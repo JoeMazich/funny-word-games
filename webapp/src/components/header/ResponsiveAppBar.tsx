@@ -93,15 +93,15 @@ function ResponsiveAppBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {Object.keys(pageNames).map((page) => (
+              {Object.entries(pageNames).map(([_, pageInfo]) => (
                 <MenuItem
-                  key={page}
+                  key={pageInfo.route}
                   onClick={() => {
                     handleCloseNavMenu();
-                    navigate(page);
+                    navigate(pageInfo.route);
                   }}
                 >
-                  <Typography textAlign="center">{pageNames[page as keyof typeof pageNames]}</Typography>
+                  <Typography textAlign="center">{pageInfo.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -126,16 +126,16 @@ function ResponsiveAppBar() {
             {title}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {Object.keys(pageNames).map((page) => (
+            {Object.entries(pageNames).map(([_, pageInfo]) => (
               <Button
-                key={page}
+                key={pageInfo.route}
                 onClick={() => {
                   handleCloseNavMenu();
-                  navigate(page);
+                  navigate(pageInfo.route);
                 }}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {pageNames[page as keyof typeof pageNames]}
+                {pageInfo.name}
               </Button>
             ))}
           </Box>
